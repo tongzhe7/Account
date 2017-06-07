@@ -1,6 +1,5 @@
 include ':account'
 include ':sharesdk'
-include ':onekeyshare'
 include ':daterangepicker'
 include ':pagerslidingtabstrip'
 include ':slidedatetimepicker'
