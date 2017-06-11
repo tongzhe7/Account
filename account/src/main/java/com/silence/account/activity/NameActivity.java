@@ -37,7 +37,7 @@ public class NameActivity extends BaseActivity {
     }
 
     @Override
-    protected Activity getSubActivity() {
+    public Activity getSubActivity() {
         return this;
     }
 

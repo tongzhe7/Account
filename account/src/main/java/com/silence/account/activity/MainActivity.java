@@ -159,7 +159,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     }
 
     @Override
-    protected Activity getSubActivity() {
+    public Activity getSubActivity() {
         return this;
     }
 

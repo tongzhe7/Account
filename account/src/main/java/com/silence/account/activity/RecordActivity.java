@@ -72,7 +72,7 @@ public class RecordActivity extends BaseActivity implements IncomeFragment.onTim
     }
 
     @Override
-    protected Activity getSubActivity() {
+    public Activity getSubActivity() {
         return this;
     }
 

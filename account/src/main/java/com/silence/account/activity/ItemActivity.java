@@ -97,7 +97,7 @@ public class ItemActivity extends BaseActivity implements ShowExpenseFgt.onExpen
     }
 
     @Override
-    protected Activity getSubActivity() {
+    public Activity getSubActivity() {
         return this;
     }
 

@@ -123,7 +123,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     @Override
-    protected Activity getSubActivity() {
+    public Activity getSubActivity() {
         return this;
     }
 
