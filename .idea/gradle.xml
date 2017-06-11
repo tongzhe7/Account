@@ -16,16 +16,7 @@
             <option value="$PROJECT_DIR$/slidedatetimepicker" />
           </set>
         </option>
-        <option name="myModules">
-          <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/account" />
-            <option value="$PROJECT_DIR$/daterangepicker" />
-            <option value="$PROJECT_DIR$/pagerslidingtabstrip" />
-            <option value="$PROJECT_DIR$/sharesdk" />
-            <option value="$PROJECT_DIR$/slidedatetimepicker" />
-          </set>
-        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

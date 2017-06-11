@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 22
-    buildToolsVersion "23.0.3"
+    buildToolsVersion "25.0.3"
 
     defaultConfig {
         applicationId "com.silence.account"
@@ -36,4 +36,8 @@ dependencies {
     compile project(':slidedatetimepicker')
 //    compile 'com.borax12.materialdaterangepicker:library:1.8'
     compile project(':daterangepicker')
+//添加kotlin支持
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.anko:anko-common:$anko_version"
 }
