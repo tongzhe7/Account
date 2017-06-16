@@ -27,6 +27,7 @@ import com.iflytek.cloud.ui.RecognizerDialog;
 import com.iflytek.cloud.ui.RecognizerDialogListener;
 import com.silence.account.R;
 import com.silence.account.activity.CategoryAty;
+import com.silence.account.activity.MainActivity;
 import com.silence.account.adapter.GridInCatAdapter;
 import com.silence.account.application.AccountApplication;
 import com.silence.account.dao.IncomeCatDao;
@@ -38,6 +39,9 @@ import com.silence.account.utils.DateUtils;
 import com.silence.account.utils.L;
 import com.silence.account.utils.T;
 
+
+import com.silence.account.wheelpicker.NestActivity;
+
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,6 +52,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import kotlin.jvm.JvmClassMappingKt;
 
 public class IncomeFragment extends BaseFragment implements AdapterView.OnItemClickListener {
 
@@ -203,7 +208,7 @@ public class IncomeFragment extends BaseFragment implements AdapterView.OnItemCl
         }
     }
 
-    @OnClick({R.id.label_income_time, R.id.icon_income_speak, R.id.ll_income_cat, R.id.btn_income_save})
+    @OnClick({R.id.label_income_time, R.id.icon_income_speak, R.id.ll_income_cat, R.id.btn_income_save,R.id.et_income_note})
     public void incomeClick(View view) {
         switch (view.getId()) {
             case R.id.label_income_time: {
@@ -223,6 +228,16 @@ public class IncomeFragment extends BaseFragment implements AdapterView.OnItemCl
                 saveIncome();
             }
             break;
+            case R.id.et_income_note:{
+
+                startActivity(new Intent(mContext,NestActivity.class ));
+
+
+
+
+            }
+            break;
+
             case R.id.icon_income_speak: {
                 RecognizerDialog mDialog = new RecognizerDialog(mContext, null);
                 mDialog.setParameter(SpeechConstant.LANGUAGE, "zh_cn");

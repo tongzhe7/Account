@@ -90,7 +90,8 @@
             android:src="@mipmap/ic_voice"/>
     </LinearLayout>
 
-    <Button
+
+     <Button
         android:id="@+id/btn_income_save"
         style="@style/btn_normal_style"
         android:layout_width="300dp"
