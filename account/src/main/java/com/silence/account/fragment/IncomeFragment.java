@@ -161,6 +161,7 @@ public class IncomeFragment extends BaseFragment implements AdapterView.OnItemCl
 
 
         picker1 = (WheelAreaPicker) view.findViewById(R.id.main_wheel_left);
+        picker1.setVisibility(View.GONE);
 
 
         picker1.mWPProvince.setOnWheelChangeListener(new WheelPicker.OnWheelChangeListener() {
@@ -295,6 +296,10 @@ public class IncomeFragment extends BaseFragment implements AdapterView.OnItemCl
             case R.id.et_income_note:{
 
                // startActivity(new Intent(mContext,NestActivity.class ));
+                if (picker1.getVisibility() == View.GONE) {
+
+                    picker1.setVisibility(View.VISIBLE);
+                }
 
 
 
