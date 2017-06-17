@@ -23,11 +23,12 @@ android {
 
 dependencies {
     //WheelPicker添加库
-    compile 'com.alibaba:fastjson:1.1.55.android'
-    //compile project(':library:WheelPicker')
-    compile('cn.qqtheme.framework:WheelPicker:1.5.2') {
-        exclude group: 'com.android.support'
-    }
+//    compile 'com.alibaba:fastjson:1.1.55.android'
+//    //compile project(':library:WheelPicker')
+//    compile('cn.qqtheme.framework:WheelPicker:1.5.2') {
+//        exclude group: 'com.android.support'
+//    }
+    compile project(':WheelPicker')
 
     compile fileTree(include: ['*.jar'], dir: 'libs')
 

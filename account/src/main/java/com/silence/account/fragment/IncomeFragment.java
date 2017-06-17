@@ -7,6 +7,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.view.DragEvent;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -20,6 +22,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.aigestudio.wheelpicker.WheelPicker;
 import com.iflytek.cloud.RecognizerResult;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechError;
@@ -40,7 +43,6 @@ import com.silence.account.utils.L;
 import com.silence.account.utils.T;
 
 
-import com.silence.account.wheelpicker.NestActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
@@ -53,6 +55,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.OnClick;
 import kotlin.jvm.JvmClassMappingKt;
+import com.aigestudio.wheelpicker.widgets.WheelAreaPicker;
 
 public class IncomeFragment extends BaseFragment implements AdapterView.OnItemClickListener {
 
@@ -79,7 +82,8 @@ public class IncomeFragment extends BaseFragment implements AdapterView.OnItemCl
     private boolean mIsUpdateIncome;
     private GridInCatAdapter mCatAdapter;
     private Context mContext;
-
+    private WheelAreaPicker picker1;
+   // private WheelPicker picker1;
 
     public static IncomeFragment getInstance(Income income) {
         Bundle bundle = new Bundle();
@@ -154,6 +158,66 @@ public class IncomeFragment extends BaseFragment implements AdapterView.OnItemCl
                 ViewGroup.LayoutParams.WRAP_CONTENT, true);
         mPopupWindow.setBackgroundDrawable(new ColorDrawable(0xb0000000));
         mPopupWindow.setAnimationStyle(R.style.popwindow_anim_style);
+
+
+        picker1 = (WheelAreaPicker) view.findViewById(R.id.main_wheel_left);
+
+
+        picker1.mWPProvince.setOnWheelChangeListener(new WheelPicker.OnWheelChangeListener() {
+            @Override
+            public void onWheelScrolled(int offset) {
+
+            }
+
+            @Override
+            public void onWheelSelected(int position) {
+                mEtIncomeNote.setText( picker1.getProvince() + picker1.getCity() + picker1.getArea() );
+
+            }
+
+            @Override
+            public void onWheelScrollStateChanged(int state) {
+
+            }
+        });
+        picker1.mWPCity.setOnWheelChangeListener(new WheelPicker.OnWheelChangeListener() {
+            @Override
+            public void onWheelScrolled(int offset) {
+
+            }
+
+            @Override
+            public void onWheelSelected(int position) {
+                mEtIncomeNote.setText( picker1.getProvince() + picker1.getCity() + picker1.getArea() );
+
+            }
+
+            @Override
+            public void onWheelScrollStateChanged(int state) {
+
+            }
+        });
+
+        picker1.mWPArea.setOnWheelChangeListener(new WheelPicker.OnWheelChangeListener() {
+            @Override
+            public void onWheelScrolled(int offset) {
+
+            }
+
+            @Override
+            public void onWheelSelected(int position) {
+
+                mEtIncomeNote.setText( picker1.getProvince() + picker1.getCity() + picker1.getArea() );
+
+            }
+
+            @Override
+            public void onWheelScrollStateChanged(int state) {
+
+            }
+        });
+
+
         return view;
     }
 
@@ -230,7 +294,7 @@ public class IncomeFragment extends BaseFragment implements AdapterView.OnItemCl
             break;
             case R.id.et_income_note:{
 
-                startActivity(new Intent(mContext,NestActivity.class ));
+               // startActivity(new Intent(mContext,NestActivity.class ));
 
 
 
