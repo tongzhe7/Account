@@ -71,6 +71,12 @@ public class IncomeFragment extends BaseFragment implements AdapterView.OnItemCl
     EditText mEtIncomeNote;
     @Bind(R.id.ll_income_cat)
     LinearLayout mLlIncomeCat;
+
+    @Bind(R.id.et_income_km)
+    TextView mEtIncomeKm;
+    @Bind(R.id.et_income_km1)
+    TextView mEtIncomeKm1;
+
     private static final int REQUEST_ADD_CATEGORY = 0x101;
     private static final int REQUEST_UPDATE_CATEGORY = 0x102;
     private boolean mIsUpdateCat;
@@ -172,8 +178,8 @@ public class IncomeFragment extends BaseFragment implements AdapterView.OnItemCl
 
             @Override
             public void onWheelSelected(int position) {
-                mEtIncomeNote.setText( picker1.getProvince() + picker1.getCity() + picker1.getArea() );
-
+                mEtIncomeKm.setText(picker1.getProvince());
+                mEtIncomeKm1.setText(picker1.getCity());
             }
 
             @Override
@@ -189,7 +195,8 @@ public class IncomeFragment extends BaseFragment implements AdapterView.OnItemCl
 
             @Override
             public void onWheelSelected(int position) {
-                mEtIncomeNote.setText( picker1.getProvince() + picker1.getCity() + picker1.getArea() );
+                mEtIncomeKm.setText(picker1.getProvince());
+                mEtIncomeKm1.setText(picker1.getCity());
 
             }
 
@@ -207,9 +214,8 @@ public class IncomeFragment extends BaseFragment implements AdapterView.OnItemCl
 
             @Override
             public void onWheelSelected(int position) {
-
-                mEtIncomeNote.setText( picker1.getProvince() + picker1.getCity() + picker1.getArea() );
-
+                mEtIncomeKm.setText(picker1.getProvince());
+                mEtIncomeKm1.setText(picker1.getCity());
             }
 
             @Override
@@ -273,41 +279,51 @@ public class IncomeFragment extends BaseFragment implements AdapterView.OnItemCl
         }
     }
 
-    @OnClick({R.id.label_income_time, R.id.icon_income_speak, R.id.ll_income_cat, R.id.btn_income_save,R.id.et_income_note})
+    @OnClick({R.id.label_income_time, R.id.icon_income_speak, R.id.ll_income_cat, R.id.btn_income_save,R.id.et_income_note,R.id.et_income_km})
     public void incomeClick(View view) {
         switch (view.getId()) {
             case R.id.label_income_time: {
+                picker1.setVisibility(View.GONE);
                 if (mOnTimePickListener != null) {
                     mOnTimePickListener.DisplayDialog(mDate);
                 }
+
             }
             break;
             case R.id.ll_income_cat:
+                picker1.setVisibility(View.GONE);
                 if (mPopupWindow.isShowing()) {
                     mPopupWindow.dismiss();
                 } else {
                     mPopupWindow.showAsDropDown(mLlIncomeCat);
                 }
+
                 break;
             case R.id.btn_income_save: {
+                picker1.setVisibility(View.GONE);
                 saveIncome();
             }
             break;
             case R.id.et_income_note:{
-
-               // startActivity(new Intent(mContext,NestActivity.class ));
-                if (picker1.getVisibility() == View.GONE) {
-
-                    picker1.setVisibility(View.VISIBLE);
-                }
-
+                picker1.setVisibility(View.GONE);
 
 
 
             }
             break;
 
+            case R.id.et_income_km:{
+
+                if (picker1.getVisibility() == View.GONE) {
+                    picker1.setVisibility(View.VISIBLE);
+                }else{
+                    picker1.setVisibility(View.GONE);
+                }
+            }
+            break;
+
             case R.id.icon_income_speak: {
+                picker1.setVisibility(View.GONE);
                 RecognizerDialog mDialog = new RecognizerDialog(mContext, null);
                 mDialog.setParameter(SpeechConstant.LANGUAGE, "zh_cn");
                 mDialog.setParameter(SpeechConstant.ACCENT, "mandarin");

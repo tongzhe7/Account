@@ -25,6 +25,49 @@
     </EditText>
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_ll_state"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp"
+        android:paddingLeft="8dp"
+        android:paddingTop="8dp"
+        >
+
+
+        <EditText
+            android:id="@+id/label_income_zi"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:hint="收"
+            android:inputType="text"
+            android:lines="3" />
+
+        <EditText
+            android:id="@+id/label_income_hao"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:inputType="text"
+            android:paddingLeft="12dp"
+            android:hint="凭证号"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/label_income_jsr"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="12dp"
+            android:hint="经手人"
+            android:textSize="18sp"
+            android:inputType="text"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/ll_income_cat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,6 +76,7 @@
         android:paddingBottom="8dp"
         android:paddingLeft="8dp"
         android:paddingTop="8dp"
+
         >
 
         <ImageView
@@ -50,6 +94,7 @@
             android:paddingLeft="12dp"
             android:text="工资"
             android:textSize="18sp"/>
+
     </LinearLayout>
 
     <TextView
@@ -64,6 +109,42 @@
         android:text="2012-12-8 12:12"
         android:textSize="20sp"
         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="8dp">
+
+        <TextView
+            android:id="@+id/et_income_km"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="12dp"
+            android:text="银行存款"
+            android:textSize="18sp"/>
+
+        <ImageView
+            android:id="@+id/et_income_km_lable"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/icon_shouru_type_gongzi"
+            android:padding="8dp"
+            />
+
+        <TextView
+            android:id="@+id/et_income_km1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="12dp"
+            android:text="工商银行"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -81,7 +162,7 @@
             android:layout_weight="1"
             android:hint="备注"
             android:inputType="text"
-            android:lines="3"/>
+            android:lines="3" />
 
         <ImageView
             android:id="@+id/icon_income_speak"
@@ -102,7 +183,7 @@
 
     <com.aigestudio.wheelpicker.widgets.WheelAreaPicker
         android:id="@+id/main_wheel_left"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#E5DEEB"
         aigestudio:wheel_atmospheric="true"
