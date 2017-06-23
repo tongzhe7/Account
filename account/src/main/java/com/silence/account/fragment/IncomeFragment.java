@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aigestudio.wheelpicker.WheelPicker;
+import com.aigestudio.wheelpicker.model.City;
 import com.aigestudio.wheelpicker.widgets.WheelPairPicker;
 import com.iflytek.cloud.RecognizerResult;
 import com.iflytek.cloud.SpeechConstant;
@@ -50,6 +51,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -167,6 +169,27 @@ public class IncomeFragment extends BaseFragment implements AdapterView.OnItemCl
 
 
         picker1 = (WheelPairPicker) view.findViewById(R.id.main_wheel_left);
+
+        City city = new City();
+        city.setName("工资发放1");
+        City city1 = new City();
+        city1.setName("收货款1");
+
+        List<String> areas = new ArrayList<>();
+        areas.add("011");
+        city.setArea(areas);
+
+        List<String> areas2 = new ArrayList<>();
+        areas2.add("021");
+        city1.setArea(areas2);
+
+        List<City> cities = new ArrayList<>();
+
+        cities.add( city);
+        cities.add( city1);
+
+        picker1.setData(cities);
+
         picker1.setVisibility(View.GONE);
 
 

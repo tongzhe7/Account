@@ -68,7 +68,7 @@ public class WheelAreaPicker extends LinearLayout implements IWheelAreaPicker {
 
         List<String> areas2 = new ArrayList<>();
 
-        areas.add("02");
+        areas2.add("02");
         city1.setArea(areas2);
 
         List<City> cities = new ArrayList<>();

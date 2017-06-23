@@ -32,42 +32,43 @@ public class WheelPairPicker extends LinearLayout implements IWheelPairPicker {
 
     private LayoutParams mLayoutParams;
 
-    public WheelPicker mWPProvince, mWPCity, mWPArea;
+    public WheelPicker  mWPCity, mWPArea;
 
     public WheelPairPicker(Context context, AttributeSet attrs) {
         super(context, attrs);
         initLayoutParams();
         initView(context);
-        //mProvinceList = getJsonDataFromAssets(mAssetManager);
-        mCityList = getJsonDataFromAssets();
+        //mCityList = getJsonDataFromAssets();
 
+        //obtainCityData();
+       // addListenerToWheelPicker();
+    }
+    public void setData(List<City> cities){
+        mCityList = cities;
         obtainCityData();
         addListenerToWheelPicker();
     }
-    private List<City> getJsonDataFromAssets() {
-        City city = new City();
-        city.setName("工资发放");
-        City city1 = new City();
-        city1.setName("收货款");
-
-        List<String> areas = new ArrayList<>();
-
-        areas.add("01");
-
-        city.setArea(areas);
-
-        List<String> areas2 = new ArrayList<>();
-
-        areas.add("02");
-        city1.setArea(areas2);
-
-        List<City> cities = new ArrayList<>();
-
-        cities.add( city);
-        cities.add( city1);
-
-        return cities;
-    }
+//    private List<City> getJsonDataFromAssets() {
+//        City city = new City();
+//        city.setName("工资发放");
+//        City city1 = new City();
+//        city1.setName("收货款");
+//
+//        List<String> areas = new ArrayList<>();
+//        areas.add("01");
+//        city.setArea(areas);
+//
+//        List<String> areas2 = new ArrayList<>();
+//        areas2.add("02");
+//        city1.setArea(areas2);
+//
+//        List<City> cities = new ArrayList<>();
+//
+//        cities.add( city);
+//        cities.add( city1);
+//
+//        return cities;
+//    }
 
 
     private void initLayoutParams() {
@@ -80,9 +81,8 @@ public class WheelPairPicker extends LinearLayout implements IWheelPairPicker {
         setOrientation(HORIZONTAL);
 
         mContext = context;
-
-
         mCityName = new ArrayList<>();
+
         mWPCity = new WheelPicker(context);
         mWPArea = new WheelPicker(context);
 
@@ -119,25 +119,11 @@ public class WheelPairPicker extends LinearLayout implements IWheelPairPicker {
     }
 
     private void setAreaData(int position) {
-//        //获得该省所有城市的集合
-//        mAreaList = mProvinceList.get(position).getCity();
-//        //获取所有city的名字
-//        //重置先前的城市集合数据
-//        mCityName.clear();
-//        for (City city : mCityList)
-//            mCityName.add(city.getName());
-//        mWPCity.setData(mCityName);
-//        mWPCity.setSelectedItemPosition(0);
         //获取第一个城市对应的城区的名字
         //重置先前的城区集合的数据
         mWPArea.setData(mCityList.get(0).getArea());
         mWPArea.setSelectedItemPosition(0);
     }
-
-  //  @Override
-//    public String getProvince() {
-//        return mProvinceList.get(mWPProvince.getCurrentItemPosition()).getName();
-//    }
 
     @Override
     public String getCity() {
