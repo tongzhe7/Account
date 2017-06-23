@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aigestudio.wheelpicker.WheelPicker;
+import com.aigestudio.wheelpicker.widgets.WheelPairPicker;
 import com.iflytek.cloud.RecognizerResult;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechError;
@@ -74,8 +75,7 @@ public class IncomeFragment extends BaseFragment implements AdapterView.OnItemCl
 
     @Bind(R.id.et_income_km)
     TextView mEtIncomeKm;
-    @Bind(R.id.et_income_km1)
-    TextView mEtIncomeKm1;
+
 
     private static final int REQUEST_ADD_CATEGORY = 0x101;
     private static final int REQUEST_UPDATE_CATEGORY = 0x102;
@@ -88,7 +88,7 @@ public class IncomeFragment extends BaseFragment implements AdapterView.OnItemCl
     private boolean mIsUpdateIncome;
     private GridInCatAdapter mCatAdapter;
     private Context mContext;
-    private WheelAreaPicker picker1;
+    private WheelPairPicker picker1;
    // private WheelPicker picker1;
 
     public static IncomeFragment getInstance(Income income) {
@@ -166,27 +166,27 @@ public class IncomeFragment extends BaseFragment implements AdapterView.OnItemCl
         mPopupWindow.setAnimationStyle(R.style.popwindow_anim_style);
 
 
-        picker1 = (WheelAreaPicker) view.findViewById(R.id.main_wheel_left);
+        picker1 = (WheelPairPicker) view.findViewById(R.id.main_wheel_left);
         picker1.setVisibility(View.GONE);
 
 
-        picker1.mWPProvince.setOnWheelChangeListener(new WheelPicker.OnWheelChangeListener() {
-            @Override
-            public void onWheelScrolled(int offset) {
-
-            }
-
-            @Override
-            public void onWheelSelected(int position) {
-                mEtIncomeKm.setText(picker1.getProvince());
-                mEtIncomeKm1.setText(picker1.getCity());
-            }
-
-            @Override
-            public void onWheelScrollStateChanged(int state) {
-
-            }
-        });
+//        picker1.mWPProvince.setOnWheelChangeListener(new WheelPicker.OnWheelChangeListener() {
+//            @Override
+//            public void onWheelScrolled(int offset) {
+//
+//            }
+//
+//            @Override
+//            public void onWheelSelected(int position) {
+//                mEtIncomeKm.setText(picker1.getProvince() + ">>" + picker1.getCity());
+//
+//            }
+//
+//            @Override
+//            public void onWheelScrollStateChanged(int state) {
+//
+//            }
+//        });
         picker1.mWPCity.setOnWheelChangeListener(new WheelPicker.OnWheelChangeListener() {
             @Override
             public void onWheelScrolled(int offset) {
@@ -195,8 +195,7 @@ public class IncomeFragment extends BaseFragment implements AdapterView.OnItemCl
 
             @Override
             public void onWheelSelected(int position) {
-                mEtIncomeKm.setText(picker1.getProvince());
-                mEtIncomeKm1.setText(picker1.getCity());
+                mEtIncomeKm.setText(picker1.getCity());
 
             }
 
@@ -214,8 +213,7 @@ public class IncomeFragment extends BaseFragment implements AdapterView.OnItemCl
 
             @Override
             public void onWheelSelected(int position) {
-                mEtIncomeKm.setText(picker1.getProvince());
-                mEtIncomeKm1.setText(picker1.getCity());
+                mEtIncomeKm.setText( picker1.getCity());
             }
 
             @Override

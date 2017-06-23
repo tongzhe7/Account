@@ -14,7 +14,21 @@ import java.util.List;
 public class PagerAdapter extends FragmentPagerAdapter {
     private List<Fragment> mFragments;
     private FragmentManager mFragmentManager;
-    private boolean[] mRefresh = {false, false};
+
+    private boolean[] mRefresh = {false, false,false};
+    private String[] mTitle={"收入","支出","转账"};
+    @Override
+    public CharSequence getPageTitle(int position) {
+        if (position>2 || position<0){
+            position =0;
+        }
+        return mTitle[position];
+    }
+
+    @Override
+    public int getCount() {
+        return 3;
+    }
 
     public PagerAdapter(FragmentManager fm, List<Fragment> fragments) {
         super(fm);
@@ -47,13 +61,5 @@ public class PagerAdapter extends FragmentPagerAdapter {
         return mFragments.get(position);
     }
 
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return position == 0 ? "收入" : "支出";
-    }
 
-    @Override
-    public int getCount() {
-        return 2;
-    }
 }

@@ -17,6 +17,7 @@ import com.silence.account.R;
 import com.silence.account.adapter.PagerAdapter;
 import com.silence.account.fragment.ExpenseFragment;
 import com.silence.account.fragment.IncomeFragment;
+import com.silence.account.fragment.TrunFragment;
 import com.silence.account.model.Expense;
 import com.silence.account.model.Income;
 import com.silence.account.utils.Constant;
@@ -38,6 +39,7 @@ public class RecordActivity extends BaseActivity implements IncomeFragment.onTim
     private FragmentManager mFragmentManager;
     private IncomeFragment mIncomeFragment;
     private ExpenseFragment mExpenseFragment;
+    private TrunFragment mTrunFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,22 +51,34 @@ public class RecordActivity extends BaseActivity implements IncomeFragment.onTim
         mFragmentManager = getSupportFragmentManager();
         Parcelable extra = getIntent().getParcelableExtra(Constant.RECORD);
         int index = 0;
-        if (extra != null) {
-            if (extra instanceof Income) {
-                mIncomeFragment = IncomeFragment.getInstance((Income) extra);
-                mExpenseFragment = new ExpenseFragment();
-            } else if (extra instanceof Expense) {
-                mExpenseFragment = ExpenseFragment.getInstance((Expense) extra);
-                mIncomeFragment = new IncomeFragment();
-                index = 1;
-            }
-        } else {
-            mExpenseFragment = new ExpenseFragment();
-            mIncomeFragment = new IncomeFragment();
-        }
-        List<Fragment> fragments = new ArrayList<>(2);
+//        if (extra != null) {
+//            if (extra instanceof Income) {
+//                mIncomeFragment = IncomeFragment.getInstance((Income) extra);
+//                mExpenseFragment = new ExpenseFragment();
+//            } else if (extra instanceof Expense) {
+//                mExpenseFragment = ExpenseFragment.getInstance((Expense) extra);
+//                mIncomeFragment = new IncomeFragment();
+//                index = 1;
+//            }
+//        } else {
+//            mExpenseFragment = new ExpenseFragment();
+//            mIncomeFragment = new IncomeFragment();
+//        }
+
+
+        mIncomeFragment = new IncomeFragment();
+        mExpenseFragment = new ExpenseFragment();
+
+        mTrunFragment = new TrunFragment();
+
+
+        List<Fragment> fragments = new ArrayList<>(3);
         fragments.add(mIncomeFragment);
         fragments.add(mExpenseFragment);
+        fragments.add(mTrunFragment);
+
+
+
         mPagerRecord.setAdapter(new PagerAdapter(mFragmentManager, fragments));
         mPagerRecord.setCurrentItem(index);
         mRecordTabStrip.setViewPager(mPagerRecord);
