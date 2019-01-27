@@ -133,7 +133,7 @@ public class UserActivity extends BaseActivity {
     }
 
     @Override
-    protected Activity getSubActivity() {
+    public Activity getSubActivity() {
         return this;
     }
 

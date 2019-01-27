@@ -4,16 +4,21 @@
               android:layout_height="match_parent"
               android:gravity="center"
               android:orientation="horizontal">
-
     <Button
         android:id="@+id/label_record_income"
         style="@style/btn_top_style"
         android:background="@drawable/btn_orange_normal"
-        android:text="收入"/>
+        android:text="xxx"/>
 
     <Button
         android:id="@+id/label_record_expense"
         style="@style/btn_top_style"
         android:background="@drawable/btn_orange_pressed"
         android:text="支出"/>
+    <Button
+        android:id="@+id/label_record_zz"
+        style="@style/btn_top_style"
+        android:background="@drawable/btn_orange_normal"
+        android:text="转账"
+        />
 </LinearLayout>

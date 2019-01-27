@@ -7,6 +7,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.view.DragEvent;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -20,6 +22,9 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.aigestudio.wheelpicker.WheelPicker;
+import com.aigestudio.wheelpicker.model.City;
+import com.aigestudio.wheelpicker.widgets.WheelPairPicker;
 import com.iflytek.cloud.RecognizerResult;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechError;
@@ -27,6 +32,7 @@ import com.iflytek.cloud.ui.RecognizerDialog;
 import com.iflytek.cloud.ui.RecognizerDialogListener;
 import com.silence.account.R;
 import com.silence.account.activity.CategoryAty;
+import com.silence.account.activity.MainActivity;
 import com.silence.account.adapter.GridInCatAdapter;
 import com.silence.account.application.AccountApplication;
 import com.silence.account.dao.IncomeCatDao;
@@ -38,16 +44,21 @@ import com.silence.account.utils.DateUtils;
 import com.silence.account.utils.L;
 import com.silence.account.utils.T;
 
+
+
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import kotlin.jvm.JvmClassMappingKt;
+import com.aigestudio.wheelpicker.widgets.WheelAreaPicker;
 
 public class IncomeFragment extends BaseFragment implements AdapterView.OnItemClickListener {
 
@@ -63,6 +74,11 @@ public class IncomeFragment extends BaseFragment implements AdapterView.OnItemCl
     EditText mEtIncomeNote;
     @Bind(R.id.ll_income_cat)
     LinearLayout mLlIncomeCat;
+
+    @Bind(R.id.et_income_km)
+    TextView mEtIncomeKm;
+
+
     private static final int REQUEST_ADD_CATEGORY = 0x101;
     private static final int REQUEST_UPDATE_CATEGORY = 0x102;
     private boolean mIsUpdateCat;
@@ -74,7 +90,8 @@ public class IncomeFragment extends BaseFragment implements AdapterView.OnItemCl
     private boolean mIsUpdateIncome;
     private GridInCatAdapter mCatAdapter;
     private Context mContext;
-
+    private WheelPairPicker picker1;
+   // private WheelPicker picker1;
 
     public static IncomeFragment getInstance(Income income) {
         Bundle bundle = new Bundle();
@@ -149,6 +166,86 @@ public class IncomeFragment extends BaseFragment implements AdapterView.OnItemCl
                 ViewGroup.LayoutParams.WRAP_CONTENT, true);
         mPopupWindow.setBackgroundDrawable(new ColorDrawable(0xb0000000));
         mPopupWindow.setAnimationStyle(R.style.popwindow_anim_style);
+
+
+        picker1 = (WheelPairPicker) view.findViewById(R.id.main_wheel_left);
+
+        City city = new City();
+        city.setName("工资发放1");
+        City city1 = new City();
+        city1.setName("收货款1");
+
+        List<String> areas = new ArrayList<>();
+        areas.add("011");
+        city.setArea(areas);
+
+        List<String> areas2 = new ArrayList<>();
+        areas2.add("021");
+        city1.setArea(areas2);
+
+        List<City> cities = new ArrayList<>();
+
+        cities.add( city);
+        cities.add( city1);
+
+        picker1.setData(cities);
+
+        picker1.setVisibility(View.GONE);
+
+
+//        picker1.mWPProvince.setOnWheelChangeListener(new WheelPicker.OnWheelChangeListener() {
+//            @Override
+//            public void onWheelScrolled(int offset) {
+//
+//            }
+//
+//            @Override
+//            public void onWheelSelected(int position) {
+//                mEtIncomeKm.setText(picker1.getProvince() + ">>" + picker1.getCity());
+//
+//            }
+//
+//            @Override
+//            public void onWheelScrollStateChanged(int state) {
+//
+//            }
+//        });
+        picker1.mWPCity.setOnWheelChangeListener(new WheelPicker.OnWheelChangeListener() {
+            @Override
+            public void onWheelScrolled(int offset) {
+
+            }
+
+            @Override
+            public void onWheelSelected(int position) {
+                mEtIncomeKm.setText(picker1.getCity());
+
+            }
+
+            @Override
+            public void onWheelScrollStateChanged(int state) {
+
+            }
+        });
+
+        picker1.mWPArea.setOnWheelChangeListener(new WheelPicker.OnWheelChangeListener() {
+            @Override
+            public void onWheelScrolled(int offset) {
+
+            }
+
+            @Override
+            public void onWheelSelected(int position) {
+                mEtIncomeKm.setText( picker1.getCity());
+            }
+
+            @Override
+            public void onWheelScrollStateChanged(int state) {
+
+            }
+        });
+
+
         return view;
     }
 
@@ -203,27 +300,51 @@ public class IncomeFragment extends BaseFragment implements AdapterView.OnItemCl
         }
     }
 
-    @OnClick({R.id.label_income_time, R.id.icon_income_speak, R.id.ll_income_cat, R.id.btn_income_save})
+    @OnClick({R.id.label_income_time, R.id.icon_income_speak, R.id.ll_income_cat, R.id.btn_income_save,R.id.et_income_note,R.id.et_income_km})
     public void incomeClick(View view) {
         switch (view.getId()) {
             case R.id.label_income_time: {
+                picker1.setVisibility(View.GONE);
                 if (mOnTimePickListener != null) {
                     mOnTimePickListener.DisplayDialog(mDate);
                 }
+
             }
             break;
             case R.id.ll_income_cat:
+                picker1.setVisibility(View.GONE);
                 if (mPopupWindow.isShowing()) {
                     mPopupWindow.dismiss();
                 } else {
                     mPopupWindow.showAsDropDown(mLlIncomeCat);
                 }
+
                 break;
             case R.id.btn_income_save: {
+                picker1.setVisibility(View.GONE);
                 saveIncome();
             }
             break;
+            case R.id.et_income_note:{
+                picker1.setVisibility(View.GONE);
+
+
+
+            }
+            break;
+
+            case R.id.et_income_km:{
+
+                if (picker1.getVisibility() == View.GONE) {
+                    picker1.setVisibility(View.VISIBLE);
+                }else{
+                    picker1.setVisibility(View.GONE);
+                }
+            }
+            break;
+
             case R.id.icon_income_speak: {
+                picker1.setVisibility(View.GONE);
                 RecognizerDialog mDialog = new RecognizerDialog(mContext, null);
                 mDialog.setParameter(SpeechConstant.LANGUAGE, "zh_cn");
                 mDialog.setParameter(SpeechConstant.ACCENT, "mandarin");
