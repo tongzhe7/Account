@@ -5,9 +5,6 @@ import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.TextView
 
 import com.silence.account.R
@@ -75,9 +72,11 @@ abstract class BaseActivity : FragmentActivity(), View.OnClickListener {
         }
     }
 
-    protected open fun onBackward() {        finish()    }
+    protected open fun onBackward() {
+        finish()
+    }
 
-    protected open fun onForward() {    }
+    protected open fun onForward() {}
 
     override fun setTitle(titleResId: Int) {
         top_title!!.setText(titleResId)
@@ -118,5 +117,4 @@ abstract class BaseActivity : FragmentActivity(), View.OnClickListener {
     abstract val subActivity: Activity
 
     //abstract fun getSubActivity(): Activity
-
 }
